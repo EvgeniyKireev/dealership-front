@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react';
 import {Loader} from "./Loader";
-import {Tablecar} from "./Tablecar";
 import {TableCarShowRoom} from "./TableCarShowRoom";
 
 export const CarShowRoomPage = ({state, dispatch}) => {
