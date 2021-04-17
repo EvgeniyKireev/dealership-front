@@ -11,6 +11,8 @@ import {Loader} from "./components/Loader";
 import {CarShowRoomPage} from "./components/CarShowRoomPage";
 import {OneShowRoomPage} from "./components/OneShowRoomPage";
 import {CarCreate} from "./components/CarCreate";
+import {CarUpdate} from "./components/CarUpdate";
+import {ShowRoomCreate} from "./components/ShowRoomCreate";
 
 function App() {
     const [state, dispatch] = useReducer(reducer, {});
@@ -44,9 +46,15 @@ function App() {
             <div className="container">
                 {isAuth ? <Auth setAuth={setAuth}/> :
                     <Route path={'/cars'} render={() => <CarPage dispatch={dispatch} state={state.cars}/>}/>}
-                {!isAuth && <Route path={'/carcreate'} exact render={() => <CarCreate dispatch={dispatch} state={state.carShowRoom}/>}/>}
-                {!isAuth && <Route path={'/carshowroom'} exact render={() => <CarShowRoomPage dispatch={dispatch} state={state.carShowRoom}/>}/>}
-                {!isAuth && <Route path={'/carshowroom/:id'} render={() => <OneShowRoomPage state={state.oneShowRoom}/>}/>}
+                {!isAuth && <Route path={'/carcreate'} exact
+                                   render={() => <CarCreate dispatch={dispatch} state={state.carShowRoom}/>}/>}
+                {!isAuth && <Route path={'/showroomcreate'} exact
+                                   render={() => <ShowRoomCreate dispatch={dispatch}/>}/>}
+                {!isAuth && <Route path={'/carupdate'} exact render={() => <CarUpdate dispatch={dispatch} dataCar={state.createPage} state={state.carShowRoom}/>}/>}
+                {!isAuth && <Route path={'/carshowroom'} exact
+                                   render={() => <CarShowRoomPage dispatch={dispatch} state={state.carShowRoom}/>}/>}
+                {!isAuth &&
+                <Route path={'/carshowroom/:id'} render={() => <OneShowRoomPage state={state.oneShowRoom}/>}/>}
                 {!isAuth && <Route path={'/about'} render={() => <About/>}/>}
                 {!isAuth &&
                 <Route path={"/"} exact render={() => <div className="row justify-content-center">

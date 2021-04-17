@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {Loader} from "./Loader";
 import {TableOneCarShowRoom} from "./TableOneShowRoom";
 import {NavLink} from "react-router-dom";

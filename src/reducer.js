@@ -6,7 +6,8 @@ export function reducer(state, action) {
             return {...state, carShowRoom: action.payload};
         case 'ADD_DATA_ONE_SHOWROOM':
             return {...state, oneShowRoom: action.payload};
-
+        case 'ADD_DATA_TO_CREATE_PAGE':
+            return {...state, createPage: action.payload};
         default:
             return state;
     }

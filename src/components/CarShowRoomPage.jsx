@@ -1,6 +1,7 @@
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {Loader} from "./Loader";
 import {TableCarShowRoom} from "./TableCarShowRoom";
+import {NavLink} from "react-router-dom";
 
 export const CarShowRoomPage = ({state, dispatch}) => {
     const [loader, setLoader] = useState(true)
@@ -14,7 +15,9 @@ export const CarShowRoomPage = ({state, dispatch}) => {
         return <Loader/>
     }
     return (<div className={'text-white'}>
-        <table className="table table-hover table-dark mt-5">
+        <NavLink to={'/showroomcreate'}>
+            <button type="button" className="btn btn-light mt-5">Добавить автосалон</button></NavLink>
+        <table className="table table-hover table-dark">
             <thead>
             <tr>
                 <th scope="col">Название</th>

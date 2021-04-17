@@ -27,6 +27,7 @@ export const CarPage = ({state, dispatch,onDelete}) => {
                 <th scope="col">Мощность</th>
                 <th scope="col">Цена</th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
