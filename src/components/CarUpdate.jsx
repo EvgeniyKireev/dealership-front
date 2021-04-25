@@ -22,6 +22,7 @@ export const CarUpdate = ({state, dataCar, dispatch}) => {
     }, [dataCar, history])
     const onUpdate = () => {
         axios.put("http://localhost:3000/api/cars/update", formState).then(response => {
+            console.log(formState)
             dispatch({type: "ADD_DATA_CAR", payload: response.data})
         });
         alert("Данные о автомобиле обновлены!")

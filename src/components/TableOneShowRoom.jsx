@@ -1,5 +1,5 @@
-
 export const TableOneCarShowRoom = ({el}) => {
+
     return (<tr>
         <td>{el.model}</td>
         <td>{el.year}</td>

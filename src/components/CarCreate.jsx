@@ -1,10 +1,19 @@
 import {Loader} from "./Loader";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
 
 export const CarCreate = ({state, dispatch}) => {
     let history = useHistory();
+    useEffect(() => {
+        axios.get('http://localhost:3000/api/carshowroom/').then((response) => {
+            dispatch({type: "ADD_DATA_CARSHOWROOM", payload: response.data})
+        }).catch((e) => {
+            alert("У вас нет автосалонов!")
+            history.push('/showroomcreate')
+        })
+    }, [state])
+    console.log(!state)
     const [formState, setFormState] = useState({
         model: "",
         color: "",
