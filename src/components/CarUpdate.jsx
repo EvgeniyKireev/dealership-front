@@ -31,7 +31,9 @@ export const CarUpdate = ({state, dataCar, dispatch}) => {
     if (!state) {
         return <Loader/>
     }
-    const validate = formState.model && formState.color && formState.category && formState.power && formState.price && formState.year
+    const validate = formState.model && formState.color && formState.category && formState.power &&
+        formState.price && formState.year &&
+        formState.year > 1900 && formState.year <= 2021 && formState.power > 0 && formState.power <= 3000
     return (<div className={"row justify-content-center mt-5"}>
         <h2 className="row text-white justify-content-center">Обновить информацию о автомобиле</h2>
         <div className="row justify-content-center">
@@ -61,7 +63,7 @@ export const CarUpdate = ({state, dataCar, dispatch}) => {
                         onChange={e => {
                             setFormState({...formState, category: e.target.value})
                         }}>
-                    <option value={""} defaultValue disabled></option>
+                    <option value={""} defaultValue disabled> </option>
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -71,18 +73,20 @@ export const CarUpdate = ({state, dataCar, dispatch}) => {
         <div className="row mt-2 justify-content-center">
             <div className=" col-4 form-group">
                 <label>Мощность</label>
-                <input type="text" className="form-control mt-1" placeholder="1000лс"
+                <input type="number" className="form-control mt-1" placeholder="1000лс"
                        value={formState.power}
                        onChange={e => {
                            setFormState({...formState, power: e.target.value})
                        }}
                 />
+                {!(formState.power > 0 && formState.power <= 3000) &&
+                <div style={{color: "red", fontSize: "10px"}}>Не более 3000</div>}
             </div>
         </div>
         <div className="row mt-2 justify-content-center">
             <div className=" col-4 form-group">
                 <label>Цена</label>
-                <input type="text" className="form-control mt-1" placeholder="700000"
+                <input type="number" className="form-control mt-1" placeholder="700000"
                        value={formState.price}
                        onChange={e => {
                            setFormState({...formState, price: e.target.value})
@@ -93,12 +97,14 @@ export const CarUpdate = ({state, dataCar, dispatch}) => {
         <div className="row mt-2 justify-content-center">
             <div className=" col-4 form-group">
                 <label>Год выпуска</label>
-                <input type={"text"} className="form-control mt-1" placeholder="2021"
+                <input type={"number"} className="form-control mt-1" placeholder="2021"
                        value={formState.year}
                        onChange={e => {
                            setFormState({...formState, year: e.target.value})
                        }}
                 />
+                {!(formState.year > 1900 && formState.year <= 2021) &&
+                <div style={{color: "red", fontSize: "10px"}}> Неверный год</div>}
             </div>
         </div>
         <div className="row mt-5 justify-content-center">

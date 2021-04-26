@@ -18,7 +18,11 @@ export const ShowRoomCreate = ({state, dispatch}) => {
         alert("Автосалон добавлен!")
         history.push("/carshowroom")
     }
-    const validate = formState.name && formState.address && formState.phone && formState.workingHours
+    let validatePhone = (phone) => {
+        let regex = /^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$/;
+        return regex.test(phone);
+    }
+    const validate = formState.name && formState.address && formState.phone && formState.workingHours && validatePhone(formState.phone)
     return (<div className={"row justify-content-center mt-5"}>
         <h2 className="row text-white justify-content-center">Добавить новый автосалон</h2>
         <div className="row justify-content-center">
@@ -50,17 +54,21 @@ export const ShowRoomCreate = ({state, dispatch}) => {
                            setFormState({...formState, phone: e.target.value})
                        }}
                 />
+                {!validatePhone(formState.phone) && <div style={{color: "red", fontSize: "10px"}}>Неверный формат телефонв</div>}
             </div>
         </div>
         <div className="row mt-2 justify-content-center">
             <div className=" col-4 form-group">
                 <label>Часы работы</label>
-                <input type="text" className="form-control mt-1" placeholder="10:00-20:00"
-                       value={formState.workingHours}
-                       onChange={e => {
-                           setFormState({...formState, workingHours: e.target.value})
-                       }}
-                />
+                <select className="form-select mt-1" aria-label="Default select example"
+                        value={formState.workingHours}  onChange={e => {
+                    setFormState({...formState, workingHours: e.target.value})
+                }}>
+                    <option value={""} defaultValue disabled></option>
+                    <option value={"8:00-18:00"}>8:00-18:00</option>
+                    <option value={"10:00-20:00"}>10:00-20:00</option>
+                    <option value={"10:00-22:00"}>10:00-22:00</option>
+                </select>
             </div>
         </div>
         <div className="row mt-5 justify-content-center">
